@@ -9,6 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bintang.myapplication.R
 import com.bintang.myapplication.databinding.ActivityMainBinding
+import com.bintang.myapplication.ui.home.HomeActivity
+import com.bintang.myapplication.ui.home.HomeFragment
 import com.bintang.myapplication.ui.register.RegisterActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -83,6 +85,9 @@ class MainActivity : AppCompatActivity() {
         if (it?.isSuccess == true) {
             //session shared preferences
             Toast.makeText(applicationContext, "Berhasil Login", Toast.LENGTH_SHORT).show()
+            intent = Intent(applicationContext, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
