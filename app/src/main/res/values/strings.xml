@@ -2,8 +2,10 @@
     <string name="app_name">My Application</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
-    <string name="password">Password</string>
     <string name="login_with_googlw">login with googlw</string>
     <string name="register">Register</string>
     <string name="forgot_password">Forgot Password?</string>
+    <string name="firstname">FirstNAme</string>
+    <string name="last_name">Last Name</string>
+    <string name="password">Password</string>
 </resources>
