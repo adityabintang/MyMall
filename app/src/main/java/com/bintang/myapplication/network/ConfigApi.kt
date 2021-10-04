@@ -29,7 +29,7 @@ interface ConfigApi {
     ): Flowable<ResRegister>
 
 
-    @GET("get-home_products")
+    @GET("get-home-products")
     fun getProduct(): Flowable<ResHomeProduk>
 
 }

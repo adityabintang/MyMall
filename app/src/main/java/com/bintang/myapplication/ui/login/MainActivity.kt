@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -47,15 +48,31 @@ class MainActivity : AppCompatActivity() {
             if (binding?.emaiAddress?.text?.toString()?.isEmpty() == true) {
                 binding?.emaiAddress?.requestFocus()
                 binding?.emaiAddress?.error = "Email Address wajib diisi"
-            }
-            binding?.emaiAddress?.text?.toString()?.let { it1 ->
-                binding?.password?.text?.toString()?.let { it2 ->
-                    viewModel?.loginUser(
-                        it1,
-                        it2
-                    )
+            } else if (binding?.password?.text?.toString()?.isEmpty() == true) {
+                binding?.password?.requestFocus()
+                binding?.password?.error = "Password tidak boleh kosong"
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(binding?.emaiAddress?.text.toString())
+                    .matches()
+            ) {
+                binding?.emaiAddress?.requestFocus()
+                binding?.emaiAddress?.error = "${
+                    Toast.makeText(
+                        applicationContext,
+                        "Email invalid atau tidak sesuai",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }"
+            } else {
+                binding?.emaiAddress?.text?.toString()?.let { it1 ->
+                    binding?.password?.text?.toString()?.let { it2 ->
+                        viewModel?.loginUser(
+                            it1,
+                            it2
+                        )
+                    }
                 }
             }
+
         }
 
         binding?.btnSignInGoogle?.setOnClickListener {
