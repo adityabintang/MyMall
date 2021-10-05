@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bintang.myapplication.R
 import com.bintang.myapplication.databinding.ActivityMainBinding
+import com.bintang.myapplication.session.SessionManager
 import com.bintang.myapplication.ui.home.HomeActivity
 import com.bintang.myapplication.ui.home.HomeFragment
 import com.bintang.myapplication.ui.register.RegisterActivity
@@ -25,13 +26,14 @@ class MainActivity : AppCompatActivity() {
     private var binding: ActivityMainBinding? = null
     private var mGoogleSignInClient: GoogleSignInClient? = null
     private val SIGN_IN = 1
+    private var session:SessionManager? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         val viewBinding = binding?.root
-
+        session = SessionManager(this)
         setContentView(viewBinding)
         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
@@ -104,6 +106,18 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, "Berhasil Login", Toast.LENGTH_SHORT).show()
             intent = Intent(applicationContext, HomeActivity::class.java)
             startActivity(intent)
+            val session = SessionManager(this)
+            val data = it.data
+            session.email = data?.email?.get(0).toString()
+            session.id = data?.id
+            session.image = data?.photo
+            session.login = true
+            session.name = data?.firstName?.get(0).toString()
+
+            //untuk cek aja data nya null atau tidak setelah login di logcat
+            print(session.id)
+            print(it.data?.email)
+            print(it.data?.id)
             finish()
         }
     }
