@@ -12,6 +12,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">HOME</string>
     <string name="all">All</string>
+    <string name="profile">Profile</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="date_of_birth">Date Of Birth</string>
+    <string name="address">Address</string>
     <string name="handphone">Handphone</string>
     <string name="infinix_zero_8">Infinix Zero 8</string>
     <string name="rp_2_900_000">Rp. 2.900.000</string>
